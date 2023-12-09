@@ -1,0 +1,21 @@
+id;nome;categoria;unidade;calorias;proteinas
+1;Maçã;Frutas;unidade;52;0.26
+2;Frango Grelhado;Carnes;grama;165;31
+3;Arroz Integral;Grãos;grama;112;2.6
+4;Espinafre;Vegetais;grama;23;2.9
+5;Iogurte Grego;Laticínios;grama;59;10
+6;Salmão Assado;Peixes;grama;206;22
+7;Cenoura;Vegetais;unidade;41;0.9
+8;Feijão Preto Cozido;Leguminosas;grama;114;7.6
+9;Ovo Cozido;Ovos;unidade;68;5.5
+10;Aveia;Grãos;grama;68;2.4
+11;Abacaxi;Frutas;unidade;50;0.5
+12;Peito de Peru;Carnes;grama;29;6.1
+13;Quinoa;Grãos;grama;120;4.1
+14;Tomate;Vegetais;unidade;22;1.1
+15;Queijo Cottage;Laticínios;grama;98;11
+16;Truta Grelhada;Peixes;grama;180;22.5
+17;Beterraba;Vegetais;unidade;35;1.5
+18;Grão de Bico Cozido;Leguminosas;grama;164;8.9
+19;Clara de Ovo Cozida;Ovos;unidade;17;3.6
+20;Granola;Grãos;grama;113;3.5

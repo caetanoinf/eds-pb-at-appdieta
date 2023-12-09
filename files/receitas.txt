@@ -1,0 +1,6 @@
+id;nome;alimento_consumo_1;alimento_consumo_2;alimento_consumo_3;eh_publica
+1;Salada de Frutas;11,1,1,unidade;16,11,100,grama;21,14,150,grama;false
+2;Omelete de Legumes;12,9,2,unidade;17,4,50,grama;22,7,1,unidade;true
+3;Salmão com Quinoa;13,6,150,grama;18,13,100,grama;23,3,100,grama;false
+4;Smoothie de Aveia;14,5,150,grama;19,15,50,grama;24,11,50,grama;true
+5;Feijoada Saudável;15,8,150,grama;20,18,100,grama;25,7,2,unidade;false

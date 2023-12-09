@@ -1,0 +1,11 @@
+id;alimentoId;quantidade;unidade
+1;1;150.00;grama
+2;2;1.50;unidade
+3;3;200.00;grama
+4;4;0.75;unidade
+5;5;300.00;grama
+6;6;2.00;unidade
+7;7;100.00;grama
+8;8;1.25;unidade
+9;9;250.00;grama
+10;10;0.50;unidade

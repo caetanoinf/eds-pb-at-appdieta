@@ -1,0 +1,11 @@
+id;sessao;alimentos;dataConsumo
+1;Almoço;1,2,3;2023-06-01T12:30:00
+2;Café da Manhã;4,5;2023-06-02T08:00:00
+3;Jantar;6,7,8;2023-06-03T19:00:00
+4;Lanche da Tarde;9,10;2023-06-04T15:30:00
+5;Ceia;1,3,5;2023-06-05T21:00:00
+6;Desjejum;2,4;null
+7;Lanche Noturno;6,8,10;null
+8;Almoço;1,5;null
+9;Café da Manhã;3,7,9;null
+10;Jantar;2,4,6;null
