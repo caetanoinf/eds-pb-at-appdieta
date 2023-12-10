@@ -1,21 +1,24 @@
 package br.edu.infnet.appdieta.model.service;
 
 import br.edu.infnet.appdieta.model.domain.Refeicao;
+import br.edu.infnet.appdieta.model.repositories.RefeicaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class RefeicaoService {
-    private Map<Integer, Refeicao> refeicoes = new HashMap<Integer, Refeicao>();
+    @Autowired
+    private RefeicaoRepository refeicaoRepository;
 
     public void incluir(Refeicao refeicao) {
-        refeicoes.put(refeicao.getId(), refeicao);
+        refeicaoRepository.save(refeicao);
     }
 
     public Collection<Refeicao> obterRefeicoes() {
-        return refeicoes.values();
+        return (Collection<Refeicao>) refeicaoRepository.findAll();
     }
 
-    public Refeicao obterRefeicao(Integer id) { return refeicoes.get(id); }
+    public Refeicao obterRefeicao(Integer id) { return refeicaoRepository.findById(id).orElseThrow(); }
 }

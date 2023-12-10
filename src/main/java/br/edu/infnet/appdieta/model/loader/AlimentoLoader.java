@@ -39,6 +39,7 @@ public class AlimentoLoader implements ApplicationRunner {
             tabelaNutricional.setUnidade(campos[3]);
             tabelaNutricional.setCalorias(Double.parseDouble(campos[4]));
             tabelaNutricional.setProteinas(Double.parseDouble(campos[5]));
+            tabelaNutricional.setAlimento(alimento);
 
             alimento.setTabelaNutricional(tabelaNutricional);
 

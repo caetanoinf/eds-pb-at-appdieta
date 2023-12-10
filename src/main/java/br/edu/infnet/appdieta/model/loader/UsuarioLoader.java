@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Order(5)
 @Component
@@ -48,14 +49,31 @@ public class UsuarioLoader implements ApplicationRunner {
             metaConsumo.setValor(Double.parseDouble(campos[4]));
             usuario.setMetaConsumo(metaConsumo);
 
-            usuario.adicionarPeso(new Peso(LocalDateTime.now(), Double.parseDouble(campos[5])));
-            usuario.adicionarPeso(new Peso(LocalDateTime.now().minusMonths(1), Double.parseDouble(campos[6])));
+            HistoricoPeso historicoPeso1 = new HistoricoPeso();
+            historicoPeso1.setData(LocalDateTime.now());
+            historicoPeso1.setValor(Double.parseDouble(campos[5]));
+            historicoPeso1.setUsuario(usuario);
+
+            HistoricoPeso historicoPeso2 = new HistoricoPeso();
+            historicoPeso2.setData(LocalDateTime.now().minusMonths(1));
+            historicoPeso2.setValor(Double.parseDouble(campos[6]));
+            historicoPeso2.setUsuario(usuario);
+            usuario.setHistoricoPeso(new ArrayList<>() {{
+                add(historicoPeso1);
+                add(historicoPeso2);
+            }});
 
             Refeicao refeicao = refeicaoService.obterRefeicao(Integer.parseInt(campos[7]));
-            usuario.adicionarRefeicao(refeicao);
+            refeicao.setUsuario(usuario);
+            usuario.setRefeicoes(new ArrayList<>() {{
+                add(refeicao);
+            }});
 
             Receita receita = receitaService.obterReceita(Integer.parseInt(campos[8]));
-            usuario.adicionarReceita(receita);
+            receita.setUsuario(usuario);
+            usuario.setReceitas(new ArrayList<>() {{
+                add(receita);
+            }});
 
             usuarioService.incluir(usuario);
 

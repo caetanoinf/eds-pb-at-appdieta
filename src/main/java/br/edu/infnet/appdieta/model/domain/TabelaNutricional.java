@@ -1,14 +1,25 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class TabelaNutricional {
+    @Id
+    @Column(name = "alimento_id")
+    private Integer id;
+
     private double calorias;
     private double proteinas;
     private String unidade;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @JoinColumn(name = "alimento_id")
+    private Alimento alimento;
 
     @Override
     public String toString() {

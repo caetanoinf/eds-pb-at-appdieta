@@ -1,25 +1,27 @@
 package br.edu.infnet.appdieta.model.service;
 
 import br.edu.infnet.appdieta.model.domain.Receita;
+import br.edu.infnet.appdieta.model.repositories.ReceitaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class ReceitaService {
-    private Map<Integer, Receita> receitas = new HashMap<>();
+    @Autowired
+    private ReceitaRepository receitaRepository;
 
     public void incluir(Receita receita) {
-        receitas.put(receita.getId(), receita);
+        receitaRepository.save(receita);
     }
 
     public Collection<Receita> obterReceitas() {
-        return receitas.values();
+        return (Collection<Receita>) receitaRepository.findAll();
     }
 
     public Receita obterReceita(Integer id) {
-        return receitas.get(id);
+        return receitaRepository.findById(id).orElseThrow();
     }
 }

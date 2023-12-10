@@ -1,17 +1,26 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Setter
-public class Nutricionista extends Usuario {
+@Entity
+public class Nutricionista {
+    @Id
     private String registro;
+
     private String qualificacao;
     private String contato;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PlanoAlimentar> planosAlimentares;
 
     @Override

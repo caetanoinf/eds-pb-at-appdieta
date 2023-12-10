@@ -1,42 +1,39 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@Entity
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;
 
+    @OneToOne
     private PlanoAlimentar planoAlimentar;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private MetaConsumo metaConsumo;
 
-    private List<Peso> historicoPeso;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<HistoricoPeso> historicoPeso;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Refeicao> refeicoes;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Receita> receitas;
-
-    public Usuario() {
-        historicoPeso = new ArrayList<Peso>();
-        refeicoes = new ArrayList<Refeicao>();
-        receitas = new ArrayList<Receita>();
-    }
-
-    public void adicionarPeso(Peso peso) {
-        historicoPeso.add(peso);
-    }
-
-    public void adicionarRefeicao(Refeicao refeicao) {
-        refeicoes.add(refeicao);
-    }
-
-    public void adicionarReceita(Receita receita) {
-        receitas.add(receita);
-    }
 
     @Override
     public String toString() {

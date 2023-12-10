@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Order(3)
 @Component
@@ -38,16 +39,18 @@ public class RefeicaoLoader implements ApplicationRunner {
 
             Refeicao refeicao = new Refeicao();
 
+            refeicao.setId(Integer.parseInt(campos[0]));
+            refeicao.setSessao(campos[1]);
+            refeicao.setDataConsumo(!campos[3].equals("null") ? LocalDateTime.now() : null);
+            refeicao.setAlimentos(new ArrayList<>());
+
             String[] alimentosIds = campos[2].split(",");
 
             for (String alimentoId : alimentosIds) {
                 AlimentoConsumo alimentoConsumo = alimentoConsumoService.obterAlimento(Integer.parseInt(alimentoId));
-                refeicao.adicionarAlimentoConsumo(alimentoConsumo);
+                alimentoConsumo.getRefeicoes().add(refeicao);
+                refeicao.getAlimentos().add(alimentoConsumo);
             }
-
-            refeicao.setId(Integer.parseInt(campos[0]));
-            refeicao.setSessao(campos[1]);
-            refeicao.setDataConsumo(!campos[3].equals("null") ? LocalDateTime.now() : null);
 
             refeicaoService.incluir(refeicao);
 

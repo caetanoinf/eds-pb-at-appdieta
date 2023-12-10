@@ -1,5 +1,6 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,11 +9,19 @@ import java.util.List;
 
 @Getter
 @Setter
+@Entity
 public class Receita {
+    @Id
+    @GeneratedValue
     private Integer id;
     private String nome;
-    private List<AlimentoConsumo> alimentos;
     private Boolean ehPublica;
+
+    @ManyToMany(mappedBy = "receitas", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<AlimentoConsumo> alimentos;
+
+    @ManyToOne(optional = true)
+    private Usuario usuario;
 
     public Receita() {
         alimentos = new ArrayList<AlimentoConsumo>();

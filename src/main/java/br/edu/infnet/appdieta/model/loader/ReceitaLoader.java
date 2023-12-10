@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 @Order(4)
 @Component
@@ -42,9 +43,9 @@ public class ReceitaLoader implements ApplicationRunner {
             receita.setId(Integer.parseInt(campos[0]));
             receita.setNome(campos[1]);
 
-            AlimentoConsumo alimento1 = criarAlimentoConsumo(campos[2]);
-            AlimentoConsumo alimento2 = criarAlimentoConsumo(campos[3]);
-            AlimentoConsumo alimento3 = criarAlimentoConsumo(campos[4]);
+            AlimentoConsumo alimento1 = criarAlimentoConsumo(campos[2], receita);
+            AlimentoConsumo alimento2 = criarAlimentoConsumo(campos[3], receita);
+            AlimentoConsumo alimento3 = criarAlimentoConsumo(campos[4], receita);
 
             receita.adicionarAlimento(alimento1);
             receita.adicionarAlimento(alimento2);
@@ -64,7 +65,7 @@ public class ReceitaLoader implements ApplicationRunner {
         bufferedReader.close();
     }
 
-    private AlimentoConsumo criarAlimentoConsumo(String descricao) {
+    private AlimentoConsumo criarAlimentoConsumo(String descricao, Receita receita) {
         String[] campos = descricao.split(",");
         int id = Integer.parseInt(campos[0]);
         int alimentoId = Integer.parseInt(campos[1]);
@@ -78,6 +79,8 @@ public class ReceitaLoader implements ApplicationRunner {
         alimentoConsumo.setUnidade(unidade);
 
         alimentoConsumoService.incluir(alimentoConsumo);
+
+        alimentoConsumo.getReceitas().add(receita);
 
         return alimentoConsumo;
     }
