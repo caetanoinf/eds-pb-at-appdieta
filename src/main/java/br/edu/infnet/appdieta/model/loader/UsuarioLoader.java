@@ -75,6 +75,8 @@ public class UsuarioLoader implements ApplicationRunner {
                 add(receita);
             }});
 
+            usuario.setEndereco(new Endereco(campos[9]));
+
             usuarioService.incluir(usuario);
 
             linha = bufferedReader.readLine();

@@ -26,6 +26,9 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     private MetaConsumo metaConsumo;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Endereco endereco;
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<HistoricoPeso> historicoPeso;
 
