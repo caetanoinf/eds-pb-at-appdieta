@@ -1,5 +1,6 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class Refeicao {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
+    @JsonBackReference
     private Usuario usuario;
 
     @ManyToMany(mappedBy = "refeicoes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

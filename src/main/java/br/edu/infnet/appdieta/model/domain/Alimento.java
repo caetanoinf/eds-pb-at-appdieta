@@ -1,5 +1,7 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +19,13 @@ public class Alimento {
     private String nome;
     private String categoria;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "alimento")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "alimento")
     @PrimaryKeyJoinColumn
+    @JsonManagedReference
     private TabelaNutricional tabelaNutricional;
 
-    @OneToMany(mappedBy = "alimento")
+    @OneToMany(mappedBy = "alimento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<AlimentoConsumo> consumos;
 
     @Override

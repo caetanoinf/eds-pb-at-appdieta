@@ -27,4 +27,11 @@ public class UsuarioService {
     public Collection<Usuario> obterUsuarios() {
         return (Collection<Usuario>) usuarioRepository.findAll();
     }
+
+    public void excluir(Integer id) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow();
+        usuario.getRefeicoes().forEach(refeicao -> refeicao.setUsuario(null));
+        usuario.getReceitas().forEach(receita -> receita.setUsuario(null));
+        usuarioRepository.deleteById(id);
+    }
 }

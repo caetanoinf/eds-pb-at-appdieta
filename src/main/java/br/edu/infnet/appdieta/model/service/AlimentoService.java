@@ -16,11 +16,19 @@ public class AlimentoService {
         alimentoRepository.save(alimento);
     }
 
-    public Collection<Alimento> obterAlimentos() {
-        return (Collection<Alimento>) alimentoRepository.findAll();
+    public List<Alimento> obterAlimentos() {
+        return (List<Alimento>) alimentoRepository.findAll();
     }
 
     public Alimento obterAlimento(Integer id) {
         return alimentoRepository.findById(id).orElseThrow();
+    }
+
+    public void excluir(Integer id) {
+        Alimento alimento = alimentoRepository.findById(id).orElseThrow();
+        alimento.getTabelaNutricional().setAlimento(null);
+        alimento.getConsumos().forEach(consumo -> consumo.setAlimento(null));
+        alimentoRepository.save(alimento);
+        alimentoRepository.deleteById(id);
     }
 }

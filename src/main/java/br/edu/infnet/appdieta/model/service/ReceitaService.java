@@ -24,4 +24,12 @@ public class ReceitaService {
     public Receita obterReceita(Integer id) {
         return receitaRepository.findById(id).orElseThrow();
     }
+
+    public void excluir(Integer id) {
+        Receita receita = receitaRepository.findById(id).orElseThrow();
+        receita.getAlimentos().forEach(ingrediente -> ingrediente.setReceitas(null));
+        receita.setUsuario(null);
+        receitaRepository.save(receita);
+        receitaRepository.delete(receita);
+    }
 }

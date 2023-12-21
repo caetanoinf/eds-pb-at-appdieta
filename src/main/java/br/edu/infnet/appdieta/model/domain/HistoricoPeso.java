@@ -1,5 +1,6 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class HistoricoPeso {
     private double valor;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
     private Usuario usuario;
 
     @Override

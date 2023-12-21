@@ -1,5 +1,8 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,15 +15,17 @@ import java.util.List;
 @Entity
 public class Receita {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private Boolean ehPublica;
 
     @ManyToMany(mappedBy = "receitas", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<AlimentoConsumo> alimentos;
 
     @ManyToOne(optional = true)
+    @JsonBackReference
     private Usuario usuario;
 
     public Receita() {

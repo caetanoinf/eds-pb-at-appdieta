@@ -1,5 +1,6 @@
 package br.edu.infnet.appdieta.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class TabelaNutricional {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "alimento_id")
+    @JsonBackReference
     private Alimento alimento;
 
     @Override

@@ -24,4 +24,10 @@ public class Endereco {
         this();
         this.cep = cep;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Endereco{id=%d, cep='%s', logradouro='%s', bairro='%s', localidade='%s', uf='%s'}",
+                id, cep, logradouro, bairro, localidade, uf);
+    }
 }
